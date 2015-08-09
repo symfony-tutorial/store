@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Service\CatalogService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -9,30 +10,11 @@ class StoreController extends Controller
 {
 
     public function indexAction(Request $request) {
-        $categories = $this->getCategories();
+        $categories = $this->get(CatalogService::ID)->getCategories();
         $products = $this->getProducts();
         return $this->render(
             'AppBundle:Store:index.html.twig',
             array('products' => $products, 'categories' => $categories)
-        );
-    }
-
-    /**
-     * 
-     * @todo real implementation
-     */
-    private function getCategories() {
-        return array(
-            array('label' => 'computers', 'children' => array(
-                    array('label' => 'laptops'),
-                    array('label' => 'desktop'),
-                    array('label' => 'servers')
-                )),
-            array('label' => 'phones & tablets', 'children' => array(
-                    array('label' => 'phones'),
-                    array('label' => 'tablets'),
-                    array('label' => 'accessories')
-                ))
         );
     }
 

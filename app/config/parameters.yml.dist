@@ -20,3 +20,6 @@ parameters:
     access.url: http://symfony.local/json-rpc/access
     access.username: store_api
     access.password: pass
+    catalog.url: http://symfony.local/json-rpc/catalog
+    catalog.username: api_all
+    catalog.password: pass

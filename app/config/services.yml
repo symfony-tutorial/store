@@ -27,3 +27,8 @@ services:
         class: AppBundle\Service\JsonRpcClient
         arguments: [%access.url%, %access.username%, %access.password%]
         public: false
+        
+    jsonrpc_client.catalog:
+        class: AppBundle\Service\JsonRpcClient
+        arguments: [%catalog.url%, %catalog.username%, %catalog.password%]
+        public: false
