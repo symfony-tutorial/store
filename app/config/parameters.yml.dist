@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    access.url: http://symfony.local/json-rpc/access
+    access.username: store_api
+    access.password: pass

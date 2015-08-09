@@ -1,16 +1,29 @@
 imports:
     - {resource: '@AppBundle/Resources/config/services.yml'}
+    
 services:
     monolog.formatter.logstash:
         class: Monolog\Formatter\LogstashFormatter
         arguments: ['app']
         public: false
+        
     session.handler.mongodb:
         class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler
         arguments: [@=service('doctrine_mongodb').getConnection().getMongoClient(), {database: store, collection: sessions}]
         public: false
+        
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         public: false
         tags:
             - { name: twig.extension }
+            
+    app.user_provider:
+        class: AppBundle\Security\UserProvider
+        arguments: ['@jsonrpc_client.access']
+        public: false
+        
+    jsonrpc_client.access:
+        class: AppBundle\Service\JsonRpcClient
+        arguments: [%access.url%, %access.username%, %access.password%]
+        public: false
