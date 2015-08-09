@@ -1,0 +1,27 @@
+{% extends 'AppBundle:Common:base.html.twig'%}
+
+{% block body %}
+    <h1><a href='{{url('store_index', {country:country})}}'>{{'store'|trans}}</a></h1>
+    <table width="100%">
+        <tr >
+            <td width="20%">
+                <div id="categories">
+                    {% include 'AppBundle:Store:categories.html.twig'%}
+                </div>
+            </td>
+            <td width="80%">
+                <div id="search">
+                    {% include 'AppBundle:Store:search.html.twig'%}
+                </div>
+                <div id="results">
+                    {% include 'AppBundle:Store:results.html.twig'%}
+                </div>
+            </td>
+            <td width="20%">
+                <div id="user">
+                    {% include 'AppBundle:Store:user.html.twig'%}
+                </div>
+            </td>
+        </tr>
+    </table>
+{% endblock %}

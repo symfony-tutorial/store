@@ -1,0 +1,6 @@
+store_index:
+    path: /
+    defaults: { _controller: "AppBundle:Store:index" }
+store_product_view:
+    path: /{slug}/pi/{productId}
+    defaults: { _controller: "AppBundle:Store:viewProduct" }    

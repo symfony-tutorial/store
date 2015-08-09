@@ -1,0 +1,20 @@
+<div class='product-listing'>
+    <table width='100%'>
+        <tr>
+            <td>
+                <a href='{{ url('store_product_view', 
+                {slug: product.title, productId: product.id, country: country})}}'>
+                    {{product.title}}
+                </a>
+                <p>
+                    {{product.description}}
+                </p>
+            </td>
+            <td>
+                <div class='price'>
+                    {{product.price|localizedcurrency(currency)}}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

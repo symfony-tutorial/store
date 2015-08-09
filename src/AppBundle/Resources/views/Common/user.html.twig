@@ -1,0 +1,8 @@
+{% if app.user %}
+    {% block loggedin %}
+        {{ app.user }}
+        <a href="{{url('logout')}}">{{'logout'|trans}}</a>
+    {% endblock %}
+{% else %}
+    {{ render(controller('AppBundle:Security:login'))}}
+{% endif %}

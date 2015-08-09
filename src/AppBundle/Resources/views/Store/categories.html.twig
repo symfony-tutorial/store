@@ -1,0 +1,16 @@
+<ul>
+    {% for category in categories %}
+        <li>
+            <a href="?category={{category.label}}">{{category.label|trans}}</a>
+            <ul>
+                {% for child in category.children %}
+                    <li>
+                        <a href="?category={{category.label ~'/'~ child.label}}">
+                            {{child.label|trans}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
