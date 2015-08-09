@@ -32,7 +32,12 @@ class JsonRpcClient
             'Content-Type: application/json',
             'Content-Length: ' . strlen($data))
         );
-        return json_decode(curl_exec($curl));
+        $response = json_decode(curl_exec($curl));
+        if (is_string($response)) {
+            $response = json_decode($response);
+        }
+
+        return $response->result;
     }
 
 }

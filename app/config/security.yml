@@ -1,12 +1,13 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm: sha512
+            encode_as_base64: false
+            iterations: 0
+            
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:
-                        password: pass
+        app.user_provider:
+            id: app.user_provider
 
     firewalls:
         dev:
