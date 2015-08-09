@@ -24,8 +24,7 @@ class UserProvider implements UserProviderInterface
                 'loadUserByUsername',
                 array('username' => $username)
         );
-        $user = $result->result;
-        return new User($user->username, $user->password, $user->roles);
+        return new User($result->username, $result->password, $result->roles);
     }
 
     public function refreshUser(UserInterface $user) {
