@@ -23,3 +23,4 @@ parameters:
     catalog.url: http://symfony.local/json-rpc/catalog
     catalog.username: api_all
     catalog.password: pass
+    elasticsearch.host: 10.10.10.1

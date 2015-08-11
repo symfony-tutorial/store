@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: doctrine_mongodb.yml }
+    - { resource: fos_elastica.yml }
 
 
 # Put parameters here that don't need to change on each machine where the app is deployed

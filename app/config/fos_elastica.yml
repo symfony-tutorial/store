@@ -1,0 +1,7 @@
+fos_elastica:
+    default_manager: mongodb
+    clients:
+        default: { host: %elasticsearch.host%, port: 9200 }
+    indexes:
+        products:
+            finder: ~

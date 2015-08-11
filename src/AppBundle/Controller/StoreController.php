@@ -10,26 +10,29 @@ class StoreController extends Controller
 {
 
     public function indexAction(Request $request) {
+        $term = $request->get('term', '');
+        $page = $request->get('page', 1);
         $categories = $this->get(CatalogService::ID)->getCategories();
-        $products = $this->getProducts();
+        $products = $this->getProducts($term, $page);
         return $this->render(
             'AppBundle:Store:index.html.twig',
             array('products' => $products, 'categories' => $categories)
         );
     }
 
-    /**
-     * 
-     * @todo real implementation
-     */
-    private function getProducts() {
-        return array(
-            array('id' => 1, 'title' => 'title1', 'description' => 'description1', 'price' => 1522),
-            array('id' => 2, 'title' => 'title2', 'description' => 'description2', 'price' => 4452),
-            array('id' => 3, 'title' => 'title3', 'description' => 'description3', 'price' => 7755),
-            array('id' => 4, 'title' => 'title4', 'description' => 'description4', 'price' => 4522),
-            array('id' => 5, 'title' => 'title5', 'description' => 'description5', 'price' => 4545),
-        );
+    private function getProducts($term, $page) {
+        $from = ($page - 1) * 10;
+        $finder = $this->container->get('fos_elastica.client');
+
+        $query = "products/_search?q=*$term*&from=$from&size=10";
+        $result = $finder->request($query)->getData()['hits'];
+
+        $products = array_map(function($product) {
+            $product['_source']['id'] = $product['_id'];
+            return $product['_source'];
+        }, $result['hits']);
+
+        return $products;
     }
 
 }
